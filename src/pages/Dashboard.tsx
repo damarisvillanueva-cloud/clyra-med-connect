@@ -46,7 +46,7 @@ export default function Dashboard() {
   const [filterByStock, setFilterByStock] = useState<'all' | 'in_stock' | 'low_stock'>('all');
   const { user, signOut } = useAuth();
 
-  const handleSearch = async () => {
+  const handleSearch = async (searchTerm: string) => {
     if (!searchTerm.trim()) return;
 
     setLoading(true);
@@ -194,12 +194,16 @@ export default function Dashboard() {
                 <Input
                   placeholder="Enter medicine name (e.g., Paracetamol)"
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setSearchTerm(value);
+                    handleSearch(value);
+                  }}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSearch(searchTerm)}
                   className="pl-10"
                 />
               </div>
-              <Button onClick={handleSearch} disabled={loading} className="bg-primary hover:bg-primary-light">
+              <Button onClick={() => handleSearch(searchTerm)} disabled={loading} className="bg-primary hover:bg-primary-light">
                 {loading ? 'Searching...' : 'Search'}
               </Button>
             </div>
