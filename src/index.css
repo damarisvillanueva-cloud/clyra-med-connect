@@ -13,15 +13,15 @@
     --foreground: 215 16% 8%;
     
     /* Clyra Brand Colors */
-    --primary: 158 89% 54%;        /* #16F98A */
+    --primary: 165 98% 39%;        /* #01C38D - Verde esmeralda brillante */
     --primary-foreground: 0 0% 100%;
-    --primary-light: 165 98% 39%;   /* #01C38D */
+    --primary-light: 165 98% 45%;   /* Lighter version of primary */
     
     /* Dark Colors */
-    --dark: 158 67% 9%;            /* #05220B */
-    --dark-blue: 205 55% 20%;      /* #134338 */
-    --dark-slate: 210 21% 24%;     /* #191E29 */
-    --dark-navy: 214 56% 24%;      /* #132D46 */
+    --dark: 225 21% 16%;           /* #191E29 - Negro azulado oscuro */
+    --dark-blue: 214 56% 17%;      /* #132D46 - Azul oscuro profundo */
+    --dark-slate: 225 21% 16%;     /* #191E29 - Negro azulado oscuro */
+    --dark-navy: 214 56% 17%;      /* #132D46 - Azul oscuro profundo */
     
     /* Neutral Colors */
     --neutral: 225 7% 45%;         /* #696E79 */
@@ -34,13 +34,13 @@
     --popover: 0 0% 100%;
     --popover-foreground: 215 16% 8%;
     
-    --secondary: 158 30% 95%;
-    --secondary-foreground: 158 67% 9%;
+    --secondary: 225 21% 95%;
+    --secondary-foreground: 225 21% 16%;
     
     --muted: 225 7% 96%;
     --muted-foreground: 225 7% 45%;
     
-    --accent: 158 89% 54%;
+    --accent: 165 98% 39%;
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 84% 60%;
@@ -48,51 +48,51 @@
     
     --border: 225 7% 90%;
     --input: 225 7% 90%;
-    --ring: 158 89% 54%;
+    --ring: 165 98% 39%;
     
     --radius: 0.5rem;
     
     /* Success states */
-    --success: 158 89% 54%;
+    --success: 165 98% 39%;
     --success-foreground: 0 0% 100%;
     
     /* Warning states */
     --warning: 43 96% 56%;
-    --warning-foreground: 215 16% 8%;
+    --warning-foreground: 225 21% 16%;
     
     /* Info states */
-    --info: 214 56% 24%;
+    --info: 214 56% 17%;
     --info-foreground: 0 0% 100%;
   }
 
   .dark {
-    --background: 214 56% 24%;     /* #132D46 */
+    --background: 214 56% 17%;     /* #132D46 - Azul oscuro profundo */
     --foreground: 0 0% 100%;
     
-    --card: 205 55% 20%;           /* #134338 */
+    --card: 225 21% 16%;           /* #191E29 - Negro azulado oscuro */
     --card-foreground: 0 0% 100%;
     
-    --popover: 205 55% 20%;
+    --popover: 225 21% 16%;
     --popover-foreground: 0 0% 100%;
     
-    --primary: 158 89% 54%;        /* #16F98A */
-    --primary-foreground: 158 67% 9%;
+    --primary: 165 98% 39%;        /* #01C38D - Verde esmeralda brillante */
+    --primary-foreground: 225 21% 16%;
     
-    --secondary: 210 21% 24%;      /* #191E29 */
+    --secondary: 225 21% 16%;      /* #191E29 - Negro azulado oscuro */
     --secondary-foreground: 0 0% 100%;
     
     --muted: 225 7% 25%;
     --muted-foreground: 225 7% 65%;
     
-    --accent: 165 98% 39%;         /* #01C38D */
-    --accent-foreground: 0 0% 100%;
+    --accent: 165 98% 45%;         /* Lighter version for dark mode */
+    --accent-foreground: 225 21% 16%;
     
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 210 21% 30%;
-    --input: 210 21% 30%;
-    --ring: 158 89% 54%;
+    --border: 225 21% 25%;
+    --input: 225 21% 25%;
+    --ring: 165 98% 39%;
   }
 }
 
