@@ -14,7 +14,222 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      medicines: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          generic_name: string | null
+          id: string
+          manufacturer: string | null
+          name: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          generic_name?: string | null
+          id?: string
+          manufacturer?: string | null
+          name: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          generic_name?: string | null
+          id?: string
+          manufacturer?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
+      pharmacies: {
+        Row: {
+          address: string
+          created_at: string
+          id: string
+          latitude: number | null
+          longitude: number | null
+          name: string
+          phone: string | null
+          rating: number | null
+          review_count: number | null
+        }
+        Insert: {
+          address: string
+          created_at?: string
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          name: string
+          phone?: string | null
+          rating?: number | null
+          review_count?: number | null
+        }
+        Update: {
+          address?: string
+          created_at?: string
+          id?: string
+          latitude?: number | null
+          longitude?: number | null
+          name?: string
+          phone?: string | null
+          rating?: number | null
+          review_count?: number | null
+        }
+        Relationships: []
+      }
+      pharmacy_medicines: {
+        Row: {
+          created_at: string
+          id: string
+          medicine_id: string
+          pharmacy_id: string
+          price: number
+          quantity: number | null
+          stock_status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          medicine_id: string
+          pharmacy_id: string
+          price: number
+          quantity?: number | null
+          stock_status: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          medicine_id?: string
+          pharmacy_id?: string
+          price?: number
+          quantity?: number | null
+          stock_status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pharmacy_medicines_medicine_id_fkey"
+            columns: ["medicine_id"]
+            isOneToOne: false
+            referencedRelation: "medicines"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pharmacy_medicines_pharmacy_id_fkey"
+            columns: ["pharmacy_id"]
+            isOneToOne: false
+            referencedRelation: "pharmacies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      reservations: {
+        Row: {
+          created_at: string
+          id: string
+          medicine_id: string
+          pharmacy_id: string
+          quantity: number
+          status: string
+          total_price: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          medicine_id: string
+          pharmacy_id: string
+          quantity?: number
+          status?: string
+          total_price: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          medicine_id?: string
+          pharmacy_id?: string
+          quantity?: number
+          status?: string
+          total_price?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reservations_medicine_id_fkey"
+            columns: ["medicine_id"]
+            isOneToOne: false
+            referencedRelation: "medicines"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reservations_pharmacy_id_fkey"
+            columns: ["pharmacy_id"]
+            isOneToOne: false
+            referencedRelation: "pharmacies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      search_history: {
+        Row: {
+          created_at: string
+          id: string
+          medicine_name: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          medicine_name: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          medicine_name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
