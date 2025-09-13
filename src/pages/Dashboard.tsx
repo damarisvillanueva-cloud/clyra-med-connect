@@ -208,7 +208,7 @@ export default function Dashboard() {
                 <span className="text-sm font-medium">Sort by:</span>
                 <select
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as any)}
+                  onChange={(e) => setSortBy(e.target.value as 'price' | 'distance' | 'rating')}
                   className="border rounded px-2 py-1 text-sm"
                 >
                   <option value="price">Price</option>
@@ -220,7 +220,7 @@ export default function Dashboard() {
                 <span className="text-sm font-medium">Stock:</span>
                 <select
                   value={filterByStock}
-                  onChange={(e) => setFilterByStock(e.target.value as any)}
+                  onChange={(e) => setFilterByStock(e.target.value as 'all' | 'in_stock' | 'low_stock')}
                   className="border rounded px-2 py-1 text-sm"
                 >
                   <option value="all">All</option>

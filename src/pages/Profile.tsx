@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ArrowLeft, Clock, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -45,15 +45,7 @@ export default function Profile() {
   const [saving, setSaving] = useState(false);
   const { user } = useAuth();
 
-  useEffect(() => {
-    if (user) {
-      loadProfile();
-      loadSearchHistory();
-      loadReservations();
-    }
-  }, [user]);
-
-  const loadProfile = async () => {
+  const loadProfile = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('profiles')
@@ -72,9 +64,9 @@ export default function Profile() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user?.id]);
 
-  const loadSearchHistory = async () => {
+  const loadSearchHistory = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('search_history')
@@ -88,9 +80,9 @@ export default function Profile() {
     } catch (error) {
       console.error('Failed to load search history:', error);
     }
-  };
+  }, [user?.id]);
 
-  const loadReservations = async () => {
+  const loadReservations = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('reservations')
@@ -112,7 +104,15 @@ export default function Profile() {
     } catch (error) {
       console.error('Failed to load reservations:', error);
     }
-  };
+  }, [user?.id]);
+
+  useEffect(() => {
+    if (user) {
+      loadProfile();
+      loadSearchHistory();
+      loadReservations();
+    }
+  }, [user, loadProfile, loadSearchHistory, loadReservations]);
 
   const handleSaveProfile = async (e: React.FormEvent) => {
     e.preventDefault();
