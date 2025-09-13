@@ -96,6 +96,9 @@ export default function Dashboard() {
         filteredResults = filteredResults.filter(item => item.stock_status === filterByStock);
       }
 
+      // Filter out items with null relationships
+      filteredResults = filteredResults.filter(item => item.medicines && item.pharmacies);
+
       // Apply sorting
       filteredResults.sort((a, b) => {
         switch (sortBy) {
@@ -248,10 +251,10 @@ export default function Dashboard() {
                         <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-3">
                           <div>
                             <h3 className="text-lg font-semibold text-foreground">
-                              {item.medicines.name}
+                              {item.medicines?.name || 'Unknown Medicine'}
                             </h3>
                             <p className="text-sm text-muted-foreground">
-                              {item.medicines.generic_name} • {item.medicines.manufacturer}
+                              {item.medicines?.generic_name || 'Unknown'} • {item.medicines?.manufacturer || 'Unknown'}
                             </p>
                           </div>
                           <div className="text-right mt-2 sm:mt-0">
@@ -264,32 +267,32 @@ export default function Dashboard() {
                           </div>
                         </div>
 
-                        <div className="border-t pt-3">
-                          <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                              <h4 className="font-medium text-foreground">{item.pharmacies.name}</h4>
-                              <div className="flex items-center space-x-4 text-sm text-muted-foreground mt-1">
-                                <div className="flex items-center">
-                                  <MapPin className="h-4 w-4 mr-1" />
-                                  {item.pharmacies.address}
+                          <div className="border-t pt-3">
+                            <div className="flex items-start justify-between">
+                              <div className="flex-1">
+                                <h4 className="font-medium text-foreground">{item.pharmacies?.name || 'Unknown Pharmacy'}</h4>
+                                <div className="flex items-center space-x-4 text-sm text-muted-foreground mt-1">
+                                  <div className="flex items-center">
+                                    <MapPin className="h-4 w-4 mr-1" />
+                                    {item.pharmacies?.address || 'Unknown address'}
+                                  </div>
+                                  <div className="flex items-center">
+                                    <Phone className="h-4 w-4 mr-1" />
+                                    {item.pharmacies?.phone || 'No phone'}
+                                  </div>
                                 </div>
-                                <div className="flex items-center">
-                                  <Phone className="h-4 w-4 mr-1" />
-                                  {item.pharmacies.phone}
+                                <div className="flex items-center mt-2">
+                                  <div className="flex items-center">
+                                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                                    <span className="ml-1 text-sm font-medium">
+                                      {item.pharmacies?.rating || 0}
+                                    </span>
+                                    <span className="ml-1 text-sm text-muted-foreground">
+                                      ({item.pharmacies?.review_count || 0} reviews)
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
-                              <div className="flex items-center mt-2">
-                                <div className="flex items-center">
-                                  <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                                  <span className="ml-1 text-sm font-medium">
-                                    {item.pharmacies.rating}
-                                  </span>
-                                  <span className="ml-1 text-sm text-muted-foreground">
-                                    ({item.pharmacies.review_count} reviews)
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
                             <div className="ml-4">
                               <Link to={`/pharmacy/${item.pharmacy_id}?medicine=${item.medicine_id}`}>
                                 <Button 
